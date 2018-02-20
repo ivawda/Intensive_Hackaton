@@ -1,6 +1,6 @@
 
 
-def checkforsurges(surgecurrentarray)
+def check_for_surges(surgecurrentarray):
     #surgearraylen=1000
     surgearray=surgecurrentarray['surge'] #read contents of key named 'surge' into surgearray
     surgelen=len(surgearray)
@@ -18,23 +18,28 @@ def checkforsurges(surgecurrentarray)
         print('Surge check complete!')
     return()
 
-def deficitsgains(surgecurrentarray):
-    sens_1=surgearray['sensor1']
-    sens_2=surgearray['sensor2']
-    stamp=surgearray['_date']
+
+def deficits_gains(surgecurrentarray):
+
+    sens_1=surgecurrentarray['sensor1']
+    sens_2=surgecurrentarray['sensor2']
+    stamp=surgecurrentarray['_date']
+
     surgelen=len(stamp)
+    print(surgelen)
+    print('about to check for gains and losses.')
 
     for v in range(0,surgelen):
-        if sens_2[v]-sens_1[v]<0:
+        print('checking {0}.'.format(v))
+        if sens_1[v] - sens_2[v] > 0.0:
             deficit=sens_1[v]-sens_2[v] #although sens2 - sens1 is negative, the deficit should be printed as a positive number
-            print('Found deficit of {} at time {}'.format(deficit,stamp[v]))
-        else:
-            if sens_2[v]-sens_1[v]>0:
-                gains=sens_2[v]-sens_1[v]
-                print('Found gain of {} at time {}'.format(gains,stamp[v]))
-            else:
-                continue
-            continue
-        return()
+            print(sens_2[v]-sens_1[v])
+            print('Found deficit of {0} at time {1}'.format(deficit,stamp[v]))
+        elif sens_1[v] - sens_2[v] < 0.0:
+            gains=sens_2[v]-sens_1[v]
+            print('Found gain of {0} at time {1}'.format(gains,stamp[v]))
+
+    print('Finished.')
+    return()
 
 

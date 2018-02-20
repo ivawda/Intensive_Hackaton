@@ -5,8 +5,8 @@ def check_current_losses(data_dict):
 
     # Create a list for the required data
     timestamp = acme_power_dictionary.get('_date')
-    first_sensor = acme_power_dictionary.get('first_sensor')
-    last_sensor = acme_power_dictionary.get('last_sensor')
+    first_sensor = acme_power_dictionary.get('sensor1')
+    last_sensor = acme_power_dictionary.get('sensor2')
 
     # Create a list to store the current gains or losses
     current_loss = []
@@ -16,7 +16,7 @@ def check_current_losses(data_dict):
 
     # Calculate a loss or gain for each value in the dataset
     # A positive value indicates a loss
-    for i in range(0, 3):
+    for i in range(0, 1000):
         loss_gain = first_sensor[i] - last_sensor[i]
         current_loss.append(loss_gain)
 
